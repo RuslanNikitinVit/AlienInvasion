@@ -92,6 +92,8 @@ class Alien_inavsion():
         # Проверка коллизий "пришелец - корабль".
         if pygame.sprite.spritecollideany(self.ship, self.aliens):
             self._ship_hit()
+            self.sb.prep_life()
+            self.stats.life -= 1
 
         # Проверяет, добрались ли пришельцы до нижнего края экрана.
         self._check_aliens_bottom()
@@ -121,6 +123,7 @@ class Alien_inavsion():
             self.stats.reset_stats()
             self.sb.prep_score()
             self.sb.prep_level()
+
             self.stats.game_active = True
 
             pygame.mixer.music.load('звуки/nasa-z_uki-otkrytogo-kosmosa-chast-3.mp3')
@@ -222,12 +225,14 @@ class Alien_inavsion():
             # Создание нового флота и размещение корабля в центре.
             self._create_fleet()
             self.ship.center_ship()
-
+            self.sb.prep_life()
             # Пауза.
             sleep(0.5)
         else:
             self.stats.game_active = False
             self.stats.score = 0
+            self.stats.life = 3
+            self.stats.level = 1
             pygame.mouse.set_visible(True)
 
 
@@ -238,6 +243,7 @@ class Alien_inavsion():
                 if alien.rect.bottom >= screen_rect.bottom:
                     # Происходит то же, что при столкновении с кораблём.
                     self._ship_hit()
+
                     break
 
 

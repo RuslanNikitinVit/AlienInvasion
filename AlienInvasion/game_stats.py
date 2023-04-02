@@ -9,6 +9,8 @@ class GameStats():
         self.game_active = False
         self.score = 0
         self.level = 1
+        self.life = 3
+        self.lifes = 3
         # рекорд не должен сбрасываться
         self.high_score = 0
     def reset_stats(self):

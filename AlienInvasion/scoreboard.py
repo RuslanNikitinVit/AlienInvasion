@@ -18,7 +18,7 @@ class Scoreboard():
         self.prep_score()
         self.prep_high_score()
         self.prep_level()
-
+        self.prep_life()
     def prep_score(self):
         """Преобразует текущий счёт в графическое изображение."""
         rounded_score = round(self.stats.score, -1) # -1 означает округление
@@ -61,12 +61,24 @@ class Scoreboard():
         self.level_rect.right = self.score_rect.right
         self.level_rect.right = self.score_rect.left - 200
 
+    def prep_life(self):
+        life_str = str(self.stats.life)
+        self.life_image = self.font.render(life_str, True, self.text_color, self.settings.bg_color)
+
+        self.life_rect = self.life_image.get_rect()
+        self.life_rect.left = self.screen_rect.left + 20
+        self.life_rect.top = 20
+
+
+
 
     def show_score(self):
         """Выводит текущий счёт и число оставшихся кораблей."""
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.high_score_image, self.high_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
+        self.screen.blit(self.life_image, self.life_rect)
+
 
 
 
