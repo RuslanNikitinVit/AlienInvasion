@@ -66,6 +66,8 @@ class Alien_inavsion():
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
+
+
         if collisions:
             for aliens in collisions.values():
                 self.stats.score += self.settings.aliens_points * len(aliens)
@@ -74,6 +76,10 @@ class Alien_inavsion():
 
         if not self.aliens:
             # Уничтожение существующих снарядов и создания нового флота.
+            self.new_start_level()
+
+
+    def new_start_level(self):
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
