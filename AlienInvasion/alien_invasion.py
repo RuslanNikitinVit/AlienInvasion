@@ -44,8 +44,9 @@ class Alien_inavsion():
             self._check_events()
 
 
-            self.bullets.update()
+
             if self.stats.game_active:
+                self.bullets.update()
                 self.ship.update()
                 self._update_aliens()
                 self.update_bullets()
