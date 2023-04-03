@@ -49,6 +49,8 @@ class Scoreboard():
         if self.stats.score > self.stats.high_score:
             self.stats.high_score = self.stats.score
             self.prep_high_score()
+            with open('record.txt', 'w') as file_object:
+                file_object.write(str(self.stats.high_score))
 
     def prep_level(self):
         """Преобразует уровень в графическое изображение."""
